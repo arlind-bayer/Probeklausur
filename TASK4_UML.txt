@@ -1,0 +1,73 @@
+================================================================================
+TASK 4 — UML CLASS MODEL  (examine this diagram, find THREE mistakes)
+================================================================================
+
+The diagram below models a small library system. Classes are shown in the
+usual UML notation:
+  - Class name on top (in *italics* = abstract class)
+  - Attributes in the middle compartment
+  - Methods in the bottom compartment
+  - Visibility:  + public   # protected   - private
+  - Methods/attributes in *italics* are abstract
+  - Inheritance (generalization) is shown by a solid line with a hollow
+    triangle pointing to the superclass.
+  - Realization (implements an interface) is shown by a DASHED line with a
+    hollow triangle.
+
+
+                       +------------------------------------+
+                       |          *LibraryItem*             |   (abstract)
+                       +------------------------------------+
+                       | # title: String                    |
+                       | # id: int                          |
+                       +------------------------------------+
+                       | + getTitle(): String               |
+                       | + *isAvailable*(): boolean          |   (abstract)
+                       +------------------------------------+
+                                        ^
+                                        |  (solid line, hollow triangle)
+                        +---------------+----------------+
+                        |                                |
+            +---------------------------+   +-----------------------------+
+            |           Book            |   |           Magazine          |
+            +---------------------------+   +-----------------------------+
+            | # title: String           |   | - issueNumber: int          |
+            | - author: String          |   +-----------------------------+
+            +---------------------------+   | + getIssueNumber(): int     |
+            | + getAuthor(): String     |   +-----------------------------+
+            | + isAvailable(): boolean  |
+            +---------------------------+
+
+
+            +---------------------------------------------+
+            |               <<interface>>                 |
+            |                 Loanable                    |
+            +---------------------------------------------+
+            | + loan(member: Member): void                 |
+            | + returnItem(): void                         |
+            +---------------------------------------------+
+                                ^
+                                |  (SOLID line, hollow triangle)
+            +---------------------------------------------+
+            |                   Book                      |
+            +---------------------------------------------+
+            (Book is connected to Loanable by this line)
+
+
+            +---------------------------+
+            |          Member           |
+            +---------------------------+
+            | - name: String            |
+            +---------------------------+
+            | + getName(): String       |
+            +---------------------------+
+
+            Association between Member and Book:
+            Member  ---------------------------  Book
+            (a plain solid line, with NO multiplicity shown at either end)
+
+
+--------------------------------------------------------------------------------
+YOUR TASK: Find THREE mistakes in this model. For each mistake, (1) name what
+is wrong and (2) state how it can be fixed.
+--------------------------------------------------------------------------------

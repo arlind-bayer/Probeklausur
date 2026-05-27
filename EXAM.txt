@@ -1,0 +1,143 @@
+================================================================================
+        SYSTEMS DEVELOPMENT — PRACTICE EXAM
+        Total: 50 points  |  Suggested time: 60 minutes
+        Open book. Write compilable Java. Do NOT change provided files.
+================================================================================
+
+This exam has two parts:
+  PART 1 — Object Orientation in Java and UML  (40 points)
+  PART 2 — Project Management                  (10 points)
+
+Provided files (in package "exam", DO NOT CHANGE):
+  - Account.java          (a base class)
+  - Authenticatable.java  (an interface)
+
+--------------------------------------------------------------------------------
+PART 1 — OBJECT ORIENTATION IN JAVA AND UML
+--------------------------------------------------------------------------------
+
+================================================================================
+TASK 1 — Object Orientation and Polymorphism in Java        (18 points, ~18 min)
+================================================================================
+
+Create a class "SavingsAccount" that inherits its properties from Account.
+DO NOT change the provided file Account.java.
+
+In addition to the properties inherited from Account, SavingsAccount must
+fulfil the following requirements:
+
+a) A SavingsAccount has an additional private attribute "interestRate", an
+   int value representing the yearly interest rate in percent. The interest
+   rate can only take values between 0 and 15: attempts to set it below 0
+   result in interestRate = 0, attempts to set it above 15 result in
+   interestRate = 15. SavingsAccount has an accessor getInterestRate().
+
+b) A SavingsAccount has a further private attribute "withdrawalsThisMonth",
+   an int counting how many withdrawals were made in the current month. A
+   SavingsAccount allows at most 3 withdrawals per month. There is an
+   accessor getWithdrawalsThisMonth().
+
+c) The class SavingsAccount has a constructor that receives an "owner"
+   (String) and an "interestRate" (int). The constructor initialises the
+   balance to zero by using the constructor of the superclass (Account).
+   The number of withdrawals this month is initialised to 0.
+
+d) SavingsAccount has a method "deposit(int amount)" that adds "amount" to
+   the balance. A SavingsAccount can never have a negative balance:
+   SavingsAccount overrides the method changeBalance(...) of Account so that
+   any change that would result in a negative balance instead leaves the
+   balance at 0.
+
+e) SavingsAccount has a method "withdraw(int amount)" that reduces the
+   balance by "amount" and increases withdrawalsThisMonth by 1. However, if
+   3 withdrawals have already been made this month, withdraw(...) throws a
+   "WithdrawalLimitException" with a suitable message and does NOT change
+   the balance. Create the class WithdrawalLimitException yourself.
+
+f) SavingsAccount has a method "resetMonth()" that sets withdrawalsThisMonth
+   back to 0.
+
+================================================================================
+TASK 2 — Java Interfaces and Inheritance in Java             (6 points, ~6 min)
+================================================================================
+
+Create a class "SecuredAccount" that inherits its properties from Account
+while also implementing the interface Authenticatable.
+
+SecuredAccount has only one constructor, which requires two parameters: an
+"owner" (just like any Account) and a "pin" (an int, used for unlocking
+later).
+
+At initialization, SecuredAccount objects are NOT locked. Please read and
+adhere to the JavaDoc comments of the Authenticatable interface (see the
+provided file Authenticatable.java). Create SecuredAccount.java so that it
+conforms to the interface specification.
+
+================================================================================
+TASK 3 — Unit Testing in Java                                (10 points, ~10 min)
+================================================================================
+
+Assume you have implemented the class SavingsAccount from Task 1 successfully.
+
+Create a JUnit test class "SavingsAccountTest". SavingsAccountTest should
+have a @BeforeEach method that creates a fresh SavingsAccount before each
+test (any owner, interest rate 5). Write the following test methods:
+
+a) testDeposit()
+   Tests that deposit(...) increases the balance correctly, and that the
+   balance never becomes negative (a change that would go below 0 leaves
+   the balance at 0).
+
+b) testWithdraw()
+   Tests that withdraw(...) reduces the balance and increases the
+   withdrawal counter, as long as the monthly limit is not exceeded.
+
+c) testWithdrawThrowsException()
+   Tests that withdraw(...) throws a WithdrawalLimitException when a 4th
+   withdrawal in the same month is attempted.
+
+================================================================================
+TASK 4 — UML Class Models                                    (6 points, ~6 min)
+================================================================================
+
+Please examine the UML class model in the file "TASK4_UML.txt". It models a
+library system and contains mistakes. Please find THREE mistakes in the
+model. Name each mistake and state how it can be fixed.
+
+--------------------------------------------------------------------------------
+PART 2 — PROJECT MANAGEMENT
+--------------------------------------------------------------------------------
+
+================================================================================
+TASK 5 — Agile Development                                    (5 points, ~5 min)
+================================================================================
+
+A government agency is building a new tax-filing software system. The
+requirements are defined in detail by law, must not change during
+development, and the finished system must pass a formal audit in which every
+requirement has to be traced to a documented test.
+
+Discuss under which conditions plan-driven methods can be more effective
+than agile methods. Name at least three example settings and base your
+assessment on the characteristics, advantages and disadvantages of both
+approaches. Also refer to the scenario described above.
+
+================================================================================
+TASK 6 — Scrum                                                (5 points, ~5 min)
+================================================================================
+
+You work as a developer in a Scrum team. Halfway through a two-week sprint,
+the Product Owner approaches the team and wants to swap out two user stories
+from the current Sprint Backlog for two new ones that a key customer
+requested this morning.
+
+Discuss your options and give a recommendation on how to handle this
+situation without abandoning your agile development approach. Justify your
+recommendation using the principles of Scrum.
+
+================================================================================
+                              END OF EXAM
+================================================================================
+
+SUBMISSION: create your files in the package "exam", commit and push.
+Make sure the project compiles (no red errors) before your final push.
